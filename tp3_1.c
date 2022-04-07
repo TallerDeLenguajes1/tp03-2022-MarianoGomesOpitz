@@ -4,22 +4,34 @@
 
 int main()
 {
-    char *V[5], *Buff;
-    for (int i = 0; i < 5; i++)
-    {
+    char **V, *Buff;
+    int cantNombres;
+    printf("Ingrese la cantidad de nombres: ");
+    scanf("%d", &cantNombres);
+    fflush(stdin);
+    V = (char**)malloc(sizeof(char*) * cantNombres);
 
+    for (int i = 0; i < cantNombres; i++)
+    {
         printf("Ingrese el nombre %d: ", i);
         Buff = (char *)malloc(sizeof(char) * 20);
         gets(Buff);
-        V[i] = (char *)malloc(sizeof(char) * (strlen(Buff) + 1));
+        V[i] = (char *)malloc(sizeof(char ) * (strlen(Buff) + 1));
         strcpy(V[i], Buff);
     }
-    printf("\n");
-    for (int i = 0; i < 5; i++)
-    {
-        printf("Nombre %d: %s\n", i, V[i]);
-    }
 
+    puts("\n");
+
+    for (int j = 0; j < cantNombres; j++)
+    {
+        printf("Nombre %d: %s\n", j, V[j]);
+        
+    }
+    for (int j = 0; j < cantNombres; j++)
+    {
+        free(V[j]);
+    }
     free(Buff);
+    free(V);
     return 0;
 }
